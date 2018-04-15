@@ -1,10 +1,8 @@
 import React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faSignOutAlt from '@fortawesome/fontawesome-free-solid/faSignOutAlt'
-
 
 // Components
 import SideNav from './SideNav';
+import AuthButton from './AuthButton';
 
 function NavBar(props) {
   return (
@@ -16,11 +14,7 @@ function NavBar(props) {
       <div className="collapse navbar-collapse" id="navbarResponsive">
         <SideNav />
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
-              <FontAwesomeIcon icon={faSignOutAlt} /> Logout
-            </a>
-          </li>
+          <AuthButton authStore={props.authStore} />
         </ul>
       </div>
     </nav>
