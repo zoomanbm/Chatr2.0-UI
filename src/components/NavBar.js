@@ -1,4 +1,7 @@
 import React from 'react';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faSignOutAlt from '@fortawesome/fontawesome-free-solid/faSignOutAlt'
+
 
 // Components
 import SideNav from './SideNav';
@@ -15,8 +18,7 @@ function NavBar(props) {
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
-              <i className="fa fa-fw fa-sign-out"></i>
-              Logout
+              <FontAwesomeIcon icon={faSignOutAlt} /> Logout
             </a>
           </li>
         </ul>
