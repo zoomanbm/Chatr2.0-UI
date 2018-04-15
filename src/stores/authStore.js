@@ -6,14 +6,24 @@ class AuthStore {
     this.currentUser = localStorage.getItem("currentUser");
     this.token = localStorage.getItem("token");
     this.error = "";
+    this.username = "";
+    this.password = "";
   }
 
-  signup(username, password) {
-    this.storeUser(axios.post('http://localhost:8000/register/', {username, password}));
+  signup() {
+    this.storeUser(
+      axios.post('http://localhost:8000/register/', {
+        username: this.username, password: this.password
+      })
+    );
   }
 
-  login(username, password) {
-    this.storeUser(axios.post('http://localhost:8000/login/', {username, password}));
+  login() {
+    this.storeUser(
+      axios.post('http://localhost:8000/login/', {
+        username: this.username, password: this.password
+      })
+    );
   }
 
   logout() {
@@ -31,6 +41,8 @@ class AuthStore {
         localStorage.setItem("token", token);
         this.currentUser = username;
         this.token = token;
+        this.username = "";
+        this.password = "";
       })
       .catch(err => this.error = err.response.data.non_field_errors[0]);
   }
@@ -44,6 +56,8 @@ decorate(AuthStore, {
   currentUser: observable,
   token: observable,
   error: observable,
+  username: observable,
+  password: observable,
   isLoggedIn: computed
 })
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {observer} from 'mobx-react';
 
 // Fontawesome
@@ -22,14 +21,18 @@ function AuthButton(props) {
     </ul> :
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
-        <Link className="nav-link" to="/login">
+        <a className="nav-link"
+          data-toggle="modal"
+          data-target="#loginModal">
           <FontAwesomeIcon icon={faSignInAlt} /> Login
-        </Link>
+        </a>
       </li>
       <li>
-        <Link className="nav-link" to="/signup">
+        <a className="nav-link"
+          data-toggle="modal"
+          data-target="#signupModal">
           <FontAwesomeIcon icon={faUserPlus} /> Signup
-        </Link>
+        </a>
       </li>
     </ul>
 }
