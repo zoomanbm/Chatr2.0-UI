@@ -5,9 +5,12 @@ import {BrowserRouter} from 'react-router-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+// Stores
+import authStore from './stores/authStore';
+
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <App authStore={authStore}/>
   </BrowserRouter>,
   document.getElementById('root')
 );
