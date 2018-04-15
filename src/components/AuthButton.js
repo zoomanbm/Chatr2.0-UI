@@ -13,9 +13,11 @@ function AuthButton(props) {
   return authStore.isLoggedIn ?
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
-        <Link className="nav-link" to="/logout">
+        <a className="nav-link"
+          data-toggle="modal"
+          data-target="#logoutModal">
           <FontAwesomeIcon icon={faSignOutAlt} /> Logout
-        </Link>
+        </a>
       </li>
     </ul> :
     <ul className="navbar-nav ml-auto">

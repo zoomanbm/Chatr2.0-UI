@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 
+// Components
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
 // Stores
 import authStore from './stores/authStore';
+
+import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <BrowserRouter>

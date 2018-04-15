@@ -1,4 +1,5 @@
 import React from 'react';
+import {observer} from 'mobx-react';
 
 // Components
 import SideNav from './SideNav';
@@ -14,6 +15,9 @@ function NavBar(props) {
       <div className="collapse navbar-collapse" id="navbarResponsive">
         <SideNav />
         <ul className="navbar-nav ml-auto">
+          <span className="navbar-text ml-auto">
+            {props.authStore.currentUser}
+          </span>
           <AuthButton authStore={props.authStore} />
         </ul>
       </div>
@@ -21,4 +25,4 @@ function NavBar(props) {
   );
 }
 
-export default NavBar;
+export default observer(NavBar);
