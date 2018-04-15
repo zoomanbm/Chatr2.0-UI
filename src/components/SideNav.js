@@ -1,5 +1,9 @@
 import React from 'react';
 
+// Fontawesome
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faAngleLeft from '@fortawesome/fontawesome-free-solid/faAngleLeft';
+
 // Components
 import ChannelNavLink from './ChannelNavLink';
 
@@ -15,7 +19,7 @@ function SideNav(props) {
       <ul className="navbar-nav sidenav-toggler">
         <li className="nav-item">
           <a className="nav-link text-center" id="sidenavToggler">
-            <i className="fa fa-fw fa-angle-left"></i>
+            <FontAwesomeIcon icon={faAngleLeft} />
           </a>
         </li>
       </ul>
