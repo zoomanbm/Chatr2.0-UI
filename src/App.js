@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import LogoutModal from './components/LogoutModal';
 import LoginModal from './components/LoginModal';
 import SignupModal from './components/SignupModal';
+import Footer from './components/Footer';
 
 function App(props) {
   const authStore = props.authStore;
@@ -14,6 +15,7 @@ function App(props) {
       <LogoutModal authStore={authStore}/>
       <LoginModal authStore={authStore}/>
       <SignupModal authStore={authStore}/>
+      <Footer />
     </div>
   );
 }
