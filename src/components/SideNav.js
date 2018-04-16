@@ -9,6 +9,7 @@ import faPlusCircle from '@fortawesome/fontawesome-free-solid/faPlusCircle';
 
 // Components
 import ChannelNavLink from './ChannelNavLink';
+import channelStore from '../stores/channelStore';
 
 class SideNav extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class SideNav extends React.Component {
   }
 
   render () {
-    const channelLinks = [{name: "all"}].map(
+    const channelLinks = this.props.channelStore.channels.map(
       channel => <ChannelNavLink key={channel.name} channel={channel} />
     )
     return (
