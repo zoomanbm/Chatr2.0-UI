@@ -6,26 +6,38 @@ function RegistationForm(props) {
   return (
     <div>
       <form>
+        {authStore.error.length > 0 && (
+          <div className="alert alert-danger" role="alert">{authStore.error}</div>
+        )}
         <div className="form-group">
           <input className="form-control"
             type="text"
             placeholder="Username"
             value={authStore.username}
-            onChange={(e) => authStore.username = e.target.value}/>
+            required
+            onChange={(e) => {
+              authStore.username = e.target.value;
+              authStore.error = [];
+            }}/>
         </div>
         <div className="form-group">
           <input className="form-control"
             type="password"
             placeholder="Password"
             value={authStore.password}
-            onChange={(e) => authStore.password = e.target.value}/>
+            required
+            onChange={(e) => {
+              authStore.password = e.target.value;
+              authStore.error = [];
+            }}/>
         </div>
       </form>
       <div className="text-center">
         <button className="mx-auto mt-3 btn btn-small btn-link"
           data-dismiss="modal"
           data-toggle="modal"
-          data-target={props.target}>
+          data-target={props.target}
+          onClick={() => authStore.error = []}>
           {props.alternateLinkText}
         </button>
       </div>

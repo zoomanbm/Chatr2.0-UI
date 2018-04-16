@@ -4,6 +4,7 @@ function Modal(props) {
   return (
     <div className="modal fade"
       tabIndex="-1"
+      data-backdrop="static"
       id={props.id}
       role="dialog"
       aria-hidden="true">
@@ -11,20 +12,17 @@ function Modal(props) {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">{props.title}</h5>
-            <button className="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
           </div>
           <div className="modal-body">{props.body}</div>
           <div className="modal-footer">
             <button className="btn btn-secondary"
               type="button"
-              data-dismiss="modal">
+              data-dismiss="modal"
+              onClick={() => props.authStore && props.authStore.resetForm()}>
               Cancel
             </button>
             <button className="btn btn-primary"
               type="button"
-              data-dismiss="modal"
               onClick={props.clickHandler}>
               {props.type}
             </button>

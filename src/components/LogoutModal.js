@@ -9,7 +9,10 @@ function LogoutModal(props) {
     id: 'logoutModal',
     title: 'Ready to Leave?',
     body: 'Select "Logout" below if you are ready to end your current session.',
-    clickHandler: () => authStore.logout(),
+    clickHandler: () => {
+      window.$('#logoutModal').modal('toggle');
+      authStore.logout()
+    },
     type: 'Logout'
   }
   return <Modal {...modalProps} />;

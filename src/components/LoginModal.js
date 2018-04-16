@@ -1,4 +1,5 @@
 import React from 'react';
+import {observer} from 'mobx-react';
 
 // Components
 import Modal from './Modal';
@@ -9,14 +10,23 @@ function LoginModal(props) {
   const body = <RegistationForm target="#signupModal"
                   alternateLinkText="register an account"
                   authStore={authStore} />;
+
+  const login = () => {
+    const thisModal = window.$('#loginModal')
+    authStore.login()
+      .then(() => !authStore.error.length && thisModal.modal('toggle'));
+  };
+
   const modalProps = {
     id: 'loginModal',
     title: 'Login to send messages',
     body: body,
-    clickHandler: () => {authStore.login()},
-    type: 'Login'
+    clickHandler: login,
+    type: 'Login',
+    authStore: authStore
   }
-  return <Modal {...modalProps} />;
+
+  return <Modal {...modalProps}/>;
 }
 
-export default LoginModal;
+export default observer(LoginModal);

@@ -1,3 +1,4 @@
+import React from 'react';
 import {decorate, observable, computed} from 'mobx';
 import axios from 'axios';
 
@@ -5,25 +6,17 @@ class AuthStore {
   constructor() {
     this.currentUser = localStorage.getItem("currentUser");
     this.token = localStorage.getItem("token");
-    this.error = "";
+    this.error = [];
     this.username = "";
     this.password = "";
   }
 
   signup() {
-    this.storeUser(
-      axios.post('http://localhost:8000/register/', {
-        username: this.username, password: this.password
-      })
-    );
+    return this.storeUser('signup');
   }
 
   login() {
-    this.storeUser(
-      axios.post('http://localhost:8000/login/', {
-        username: this.username, password: this.password
-      })
-    );
+    return this.storeUser('login');
   }
 
   logout() {
@@ -33,18 +26,34 @@ class AuthStore {
     this.token = null;
   }
 
-  storeUser(promiseForUser) {
-    promiseForUser
+  storeUser(type) {
+    return axios.post(`http://localhost:8000/${type}/`, {
+      username: this.username,
+      password: this.password
+    })
       .then(res => res.data)
       .then(({username, token}) => {
         localStorage.setItem("currentUser", username);
         localStorage.setItem("token", token);
         this.currentUser = username;
         this.token = token;
-        this.username = "";
-        this.password = "";
+        this.resetForm();
       })
-      .catch(err => this.error = err.response.data.non_field_errors[0]);
+      .catch(err => {
+        Object.entries(err.response.data).forEach(
+          ([errType, errList]) =>
+            this.error = this.error.concat(errList.map(
+              message => <p key={errType+message}><strong>{errType}:</strong> {message}</p>
+            ))
+        );
+      });
+  }
+
+  resetForm() {
+    console.log("here")
+    this.error = [];
+    this.username = "";
+    this.password = "";
   }
 
   get isLoggedIn() {
