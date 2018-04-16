@@ -15,7 +15,7 @@ function NavBar(props) {
       <div className="collapse navbar-collapse" id="navbarResponsive">
         <SideNav />
         <ul className="navbar-nav ml-auto">
-          <span className="navbar-text ml-auto">
+          <span className="navbar-text">
             {props.authStore.currentUser}
           </span>
           <AuthButton authStore={props.authStore} />
