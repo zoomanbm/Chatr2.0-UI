@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {observer} from 'mobx-react';
 
 // Fontawesome
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -47,4 +48,4 @@ class SideNav extends React.Component {
   }
 }
 
-export default SideNav;
+export default observer(SideNav);
