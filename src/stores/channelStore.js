@@ -3,10 +3,16 @@ import {decorate, observable, computed} from 'mobx';
 
 
 class ChannelStore {
+
 	constructor(){
 		this.channels =[];
 		this.loading =true;
+		this.ChannelName = [];
 	}
+
+	CreateChannel() {
+    return this.storeChannel('createChannel');
+  } 
 
 	fetchChannels(){
 		return axios.get('http://192.168.100.54/channels/')
@@ -24,8 +30,22 @@ class ChannelStore {
 	}
 
 
+	storeChannel(type) {
+	const authStore = this.props.authStore;
+    return axios.post(`http://localhost:192.168.100.54/${type}/`, {
+      ChannelName: this.ChannelName,
+      header: authStore.token
+    	})
+     .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+    
 
 
+}
 }
 
 

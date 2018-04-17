@@ -14,7 +14,8 @@ import registerServiceWorker from './registerServiceWorker';
 ReactDOM.render(
   <BrowserRouter>
     <App authStore={authStore}
-    	 channelStore={channelStore} />
+    	 channelStore={channelStore}
+    	  />
   </BrowserRouter>,
   document.getElementById('root')
 );
