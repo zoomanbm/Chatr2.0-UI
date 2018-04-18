@@ -8,11 +8,14 @@ class ChannelStore {
 	constructor(){
 		this.channels =[];
 		this.loading =true;
+		this.messages =[];
+		this.message='';
+
 	}
 
 	CreateChannel() {
     return this.storeChannel('createChannel');
-  } 
+  }
 
 	fetchChannels(){
 		return axios.get('http://192.168.100.54/channels/')
@@ -30,6 +33,34 @@ class ChannelStore {
 	}
 
 
+	getChannelByName(name) {
+	    return this.channels.find(channel => channel.name == name);
+	  }
+
+
+		fetchMessages(id, token){
+			return axios.get(`http://192.168.100.54/channels/${id}/`,
+	      {headers: {Authorization:`JWT ${token}`}})
+			.then(res=> res.data)
+			.then(messages=> {
+				this.messages =messages;
+				this.loading = false;
+				console.log(messages);
+
+
+
+
+
+
+			})
+			.catch(err=> console.error(err));
+		}
+
+
+
+
+
+
 	storeChannel(name, token) {
     return axios.post('http://192.168.100.54/channels/create/', {
       name: name},{
@@ -39,7 +70,7 @@ class ChannelStore {
   .catch(function (error) {
     console.log(error);
   });
-    
+
 
 
 }
@@ -48,6 +79,8 @@ class ChannelStore {
 
 decorate(ChannelStore, {
 	channels:observable,
+	messages:observable,
+	message:observable,
 	loading:observable,
 })
 

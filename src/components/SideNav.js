@@ -20,8 +20,9 @@ class SideNav extends React.Component {
 
   render () {
     const channelLinks = this.props.channelStore.channels.map(
-      channel => <ChannelNavLink key={channel.name} channel={channel} />
+      channel => <ChannelNavLink key={channel.name} channel={channel} channelStore={this.props.channelStore} authStore={this.props.authStore}/>
     )
+
     return (
       <div>
         <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
