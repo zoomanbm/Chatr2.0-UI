@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {decorate, observable, computed} from 'mobx';
+import AuthStore from './authStore';
 
 
 class ChannelStore {
@@ -7,7 +8,6 @@ class ChannelStore {
 	constructor(){
 		this.channels =[];
 		this.loading =true;
-		this.ChannelName = [];
 	}
 
 	CreateChannel() {
@@ -30,15 +30,12 @@ class ChannelStore {
 	}
 
 
-	storeChannel(type) {
-	const authStore = this.props.authStore;
-    return axios.post(`http://localhost:192.168.100.54/${type}/`, {
-      ChannelName: this.ChannelName,
-      header: authStore.token
+	storeChannel(name, token) {
+    return axios.post('http://192.168.100.54/channels/create/', {
+      name: name},{
+      headers: {Authorization:`JWT ${token}`}
     	})
-     .then(function (response) {
-    console.log(response);
-  })
+     
   .catch(function (error) {
     console.log(error);
   });

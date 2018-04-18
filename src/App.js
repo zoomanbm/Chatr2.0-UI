@@ -25,7 +25,8 @@ function App(props) {
       <LogoutModal authStore={authStore}/>
       <LoginModal authStore={authStore}/>
       <SignupModal authStore={authStore}/>
-      <AddChannel channelStore={channelStore}/>
+      <AddChannel authStore={authStore}
+              channelStore={channelStore}/>
      
       <Footer />
     </div>
