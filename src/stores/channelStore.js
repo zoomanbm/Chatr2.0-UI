@@ -35,7 +35,7 @@ class ChannelStore {
       name: name},{
       headers: {Authorization:`JWT ${token}`}
     	})
-     
+     .then(()=>this.fetchChannels())
   .catch(function (error) {
     console.log(error);
   });
