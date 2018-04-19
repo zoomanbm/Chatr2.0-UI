@@ -42,8 +42,7 @@ function App(props) {
       <SignupModal authStore={authStore}/>
       <AddChannel authStore={authStore}
               channelStore={channelStore}/>
-      <SendMessage authStore={authStore}
-              channelStore={channelStore}/>
+      
 
       <Footer />
     </div>
