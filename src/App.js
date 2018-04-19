@@ -14,6 +14,10 @@ import CreateChannel from './components/createChannelModal';
 import ChannelNavLink from './components/ChannelNavLink';
 import AddChannel from './components/AddChannelForm';
 import RecieveMessages from './components/chat';
+import SendMessage from './components/SendMessage';
+
+
+
 function App(props) {
   const authStore = props.authStore;
   const channelStore =props.channelStore;
@@ -37,6 +41,8 @@ function App(props) {
       <LoginModal authStore={authStore}/>
       <SignupModal authStore={authStore}/>
       <AddChannel authStore={authStore}
+              channelStore={channelStore}/>
+      <SendMessage authStore={authStore}
               channelStore={channelStore}/>
 
       <Footer />
